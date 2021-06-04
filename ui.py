@@ -364,6 +364,54 @@ class Employee ( wx.Panel ):
 		bSizer6.Fit( self.barang )
 		self.m_notebook2.AddPage( self.barang, u"Data Barang", False )
 		self.pesanan = wx.Panel( self.m_notebook2, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		bSizer71 = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_grid71 = wx.grid.Grid( self.pesanan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+
+		# Grid
+		self.m_grid71.CreateGrid( 1, 7 )
+		self.m_grid71.EnableEditing( True )
+		self.m_grid71.EnableGridLines( True )
+		self.m_grid71.EnableDragGridSize( False )
+		self.m_grid71.SetMargins( 0, 0 )
+
+		# Columns
+		self.m_grid71.EnableDragColMove( False )
+		self.m_grid71.EnableDragColSize( True )
+		self.m_grid71.SetColLabelSize( 30 )
+		self.m_grid71.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+
+		# Rows
+		self.m_grid71.EnableDragRowSize( True )
+		self.m_grid71.SetRowLabelSize( 80 )
+		self.m_grid71.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+
+		# Label Appearance
+
+		# Cell Defaults
+		self.m_grid71.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		bSizer71.Add( self.m_grid71, 0, wx.ALL, 5 )
+
+		fgSizer81 = wx.FlexGridSizer( 0, 3, 0, 0 )
+		fgSizer81.SetFlexibleDirection( wx.BOTH )
+		fgSizer81.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+		self.m_button91 = wx.Button( self.pesanan, wx.ID_ANY, u"Add", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer81.Add( self.m_button91, 0, wx.ALL, 5 )
+
+		self.m_button101 = wx.Button( self.pesanan, wx.ID_ANY, u"Update", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer81.Add( self.m_button101, 0, wx.ALL, 5 )
+
+		self.m_button111 = wx.Button( self.pesanan, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer81.Add( self.m_button111, 0, wx.ALL, 5 )
+
+
+		bSizer71.Add( fgSizer81, 1, wx.EXPAND, 5 )
+
+
+		self.pesanan.SetSizer( bSizer71 )
+		self.pesanan.Layout()
+		bSizer71.Fit( self.pesanan )
 		self.m_notebook2.AddPage( self.pesanan, u"Data Pesanan", False )
 		self.penjualan = wx.Panel( self.m_notebook2, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer7 = wx.BoxSizer( wx.VERTICAL )
@@ -404,6 +452,9 @@ class Employee ( wx.Panel ):
 		self.m_button10 = wx.Button( self.penjualan, wx.ID_ANY, u"Update", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer8.Add( self.m_button10, 0, wx.ALL, 5 )
 
+		self.m_button11 = wx.Button( self.penjualan, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer8.Add( self.m_button11, 0, wx.ALL, 5 )
+
 
 		bSizer7.Add( fgSizer8, 1, wx.EXPAND, 5 )
 
@@ -411,7 +462,7 @@ class Employee ( wx.Panel ):
 		self.penjualan.SetSizer( bSizer7 )
 		self.penjualan.Layout()
 		bSizer7.Fit( self.penjualan )
-		self.m_notebook2.AddPage( self.penjualan, u"Data Penjualan", False )
+		self.m_notebook2.AddPage( self.penjualan, u"Data Penjualan", True )
 
 		bSizer5.Add( self.m_notebook2, 1, wx.EXPAND |wx.ALL, 5 )
 
