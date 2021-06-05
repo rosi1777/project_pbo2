@@ -21,7 +21,23 @@ class Owner(RajaEs):
         self.executeQuery(self.query)
 
     def getDataOwner(self):
-        self.query = "SELECT username, password, nama, role FROM owner"
+        self.query = "SELECT id, username, password, nama, role FROM owner"
+        print('self.query : ', self.query)
+        result = self.executeQuery(self.query, True)
+        return result
+
+
+class Employee(RajaEs):
+
+    def updateDataEmployee(self, username, password, nama, gender, alamat, telepon, tanggalMasuk, idKaryawan):
+        self.query = "UPDATE employee SET username = ?, password = ?, nama = ?, gender = ?, alamat = ?, telepon = ?, tanggalMasuk = ? WHERE id = ?"
+        self.query = self.query % (
+            username, password, nama, gender, alamat, telepon, tanggalMasuk, idKaryawan)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def getDataEmployee(self):
+        self.query = "SELECT username, password, nama, gender, alamat, telepon, tanggalMasuk FROM employee"
         print('self.query : ', self.query)
         result = self.executeQuery(self.query, True)
         return result

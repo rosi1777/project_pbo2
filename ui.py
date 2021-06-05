@@ -76,7 +76,7 @@ class Login ( wx.Frame ):
 		self.Layout()
 
 		self.Centre( wx.BOTH )
-		
+
 		self.loginBtn.Bind(wx.EVT_BUTTON, self.btnLogin)
 
 	def __del__(self):
@@ -367,31 +367,31 @@ class OwnerFrame ( wx.Frame ):
 		fgSizer2.SetFlexibleDirection( wx.BOTH )
 		fgSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_grid9 = wx.grid.Grid( self.infoAkun, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Akun = wx.grid.Grid( self.infoAkun, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid9.CreateGrid( 1, 3 )
-		self.m_grid9.EnableEditing( True )
-		self.m_grid9.EnableGridLines( True )
-		self.m_grid9.EnableDragGridSize( False )
-		self.m_grid9.SetMargins( 0, 0 )
+		self.Akun.CreateGrid( 3, 4 )
+		self.Akun.EnableEditing( True )
+		self.Akun.EnableGridLines( True )
+		self.Akun.EnableDragGridSize( False )
+		self.Akun.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid9.EnableDragColMove( False )
-		self.m_grid9.EnableDragColSize( True )
-		self.m_grid9.SetColLabelSize( 30 )
-		self.m_grid9.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Akun.EnableDragColMove( False )
+		self.Akun.EnableDragColSize( True )
+		self.Akun.SetColLabelSize( 30 )
+		self.Akun.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid9.EnableDragRowSize( True )
-		self.m_grid9.SetRowLabelSize( 80 )
-		self.m_grid9.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Akun.EnableDragRowSize( True )
+		self.Akun.SetRowLabelSize( 80 )
+		self.Akun.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid9.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		fgSizer2.Add( self.m_grid9, 0, wx.ALL, 5 )
+		self.Akun.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		fgSizer2.Add( self.Akun, 0, wx.ALL, 5 )
 
 		self.ubahAkun = wx.Button( self.infoAkun, wx.ID_ANY, u"Ubah Akun", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer2.Add( self.ubahAkun, 0, wx.ALL, 5 )
@@ -406,31 +406,31 @@ class OwnerFrame ( wx.Frame ):
 		fgSizer3.SetFlexibleDirection( wx.BOTH )
 		fgSizer3.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_grid2 = wx.grid.Grid( self.dataBarang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Barang = wx.grid.Grid( self.dataBarang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid2.CreateGrid( 7, 5 )
-		self.m_grid2.EnableEditing( True )
-		self.m_grid2.EnableGridLines( True )
-		self.m_grid2.EnableDragGridSize( False )
-		self.m_grid2.SetMargins( 0, 0 )
+		self.Barang.CreateGrid( 7, 5 )
+		self.Barang.EnableEditing( True )
+		self.Barang.EnableGridLines( True )
+		self.Barang.EnableDragGridSize( False )
+		self.Barang.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid2.EnableDragColMove( False )
-		self.m_grid2.EnableDragColSize( True )
-		self.m_grid2.SetColLabelSize( 30 )
-		self.m_grid2.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Barang.EnableDragColMove( False )
+		self.Barang.EnableDragColSize( True )
+		self.Barang.SetColLabelSize( 30 )
+		self.Barang.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid2.EnableDragRowSize( True )
-		self.m_grid2.SetRowLabelSize( 80 )
-		self.m_grid2.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Barang.EnableDragRowSize( True )
+		self.Barang.SetRowLabelSize( 80 )
+		self.Barang.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid2.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		fgSizer3.Add( self.m_grid2, 0, wx.ALL, 5 )
+		self.Barang.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		fgSizer3.Add( self.Barang, 0, wx.ALL, 5 )
 
 
 		self.dataBarang.SetSizer( fgSizer3 )
@@ -442,31 +442,31 @@ class OwnerFrame ( wx.Frame ):
 		fgSizer4.SetFlexibleDirection( wx.BOTH )
 		fgSizer4.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_grid3 = wx.grid.Grid( self.dataPesanan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Pesanan = wx.grid.Grid( self.dataPesanan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid3.CreateGrid( 1, 7 )
-		self.m_grid3.EnableEditing( True )
-		self.m_grid3.EnableGridLines( True )
-		self.m_grid3.EnableDragGridSize( False )
-		self.m_grid3.SetMargins( 0, 0 )
+		self.Pesanan.CreateGrid( 1, 7 )
+		self.Pesanan.EnableEditing( True )
+		self.Pesanan.EnableGridLines( True )
+		self.Pesanan.EnableDragGridSize( False )
+		self.Pesanan.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid3.EnableDragColMove( False )
-		self.m_grid3.EnableDragColSize( True )
-		self.m_grid3.SetColLabelSize( 30 )
-		self.m_grid3.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Pesanan.EnableDragColMove( False )
+		self.Pesanan.EnableDragColSize( True )
+		self.Pesanan.SetColLabelSize( 30 )
+		self.Pesanan.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid3.EnableDragRowSize( True )
-		self.m_grid3.SetRowLabelSize( 80 )
-		self.m_grid3.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Pesanan.EnableDragRowSize( True )
+		self.Pesanan.SetRowLabelSize( 80 )
+		self.Pesanan.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid3.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		fgSizer4.Add( self.m_grid3, 0, wx.ALL, 5 )
+		self.Pesanan.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		fgSizer4.Add( self.Pesanan, 0, wx.ALL, 5 )
 
 
 		self.dataPesanan.SetSizer( fgSizer4 )
@@ -478,31 +478,31 @@ class OwnerFrame ( wx.Frame ):
 		fgSizer5.SetFlexibleDirection( wx.BOTH )
 		fgSizer5.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_grid4 = wx.grid.Grid( self.dataPenjualan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Penjualan = wx.grid.Grid( self.dataPenjualan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid4.CreateGrid( 1, 7 )
-		self.m_grid4.EnableEditing( True )
-		self.m_grid4.EnableGridLines( True )
-		self.m_grid4.EnableDragGridSize( False )
-		self.m_grid4.SetMargins( 0, 0 )
+		self.Penjualan.CreateGrid( 1, 7 )
+		self.Penjualan.EnableEditing( True )
+		self.Penjualan.EnableGridLines( True )
+		self.Penjualan.EnableDragGridSize( False )
+		self.Penjualan.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid4.EnableDragColMove( False )
-		self.m_grid4.EnableDragColSize( True )
-		self.m_grid4.SetColLabelSize( 30 )
-		self.m_grid4.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Penjualan.EnableDragColMove( False )
+		self.Penjualan.EnableDragColSize( True )
+		self.Penjualan.SetColLabelSize( 30 )
+		self.Penjualan.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid4.EnableDragRowSize( True )
-		self.m_grid4.SetRowLabelSize( 80 )
-		self.m_grid4.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Penjualan.EnableDragRowSize( True )
+		self.Penjualan.SetRowLabelSize( 80 )
+		self.Penjualan.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid4.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		fgSizer5.Add( self.m_grid4, 0, wx.ALL, 5 )
+		self.Penjualan.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		fgSizer5.Add( self.Penjualan, 0, wx.ALL, 5 )
 
 
 		self.dataPenjualan.SetSizer( fgSizer5 )
@@ -512,31 +512,31 @@ class OwnerFrame ( wx.Frame ):
 		self.dataKaryawan = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer4 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_grid6 = wx.grid.Grid( self.dataKaryawan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Karyawan = wx.grid.Grid( self.dataKaryawan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid6.CreateGrid( 5, 8 )
-		self.m_grid6.EnableEditing( True )
-		self.m_grid6.EnableGridLines( True )
-		self.m_grid6.EnableDragGridSize( False )
-		self.m_grid6.SetMargins( 0, 0 )
+		self.Karyawan.CreateGrid( 5, 8 )
+		self.Karyawan.EnableEditing( True )
+		self.Karyawan.EnableGridLines( True )
+		self.Karyawan.EnableDragGridSize( False )
+		self.Karyawan.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid6.EnableDragColMove( False )
-		self.m_grid6.EnableDragColSize( True )
-		self.m_grid6.SetColLabelSize( 30 )
-		self.m_grid6.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Karyawan.EnableDragColMove( False )
+		self.Karyawan.EnableDragColSize( True )
+		self.Karyawan.SetColLabelSize( 30 )
+		self.Karyawan.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid6.EnableDragRowSize( True )
-		self.m_grid6.SetRowLabelSize( 80 )
-		self.m_grid6.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Karyawan.EnableDragRowSize( True )
+		self.Karyawan.SetRowLabelSize( 80 )
+		self.Karyawan.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid6.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		bSizer4.Add( self.m_grid6, 0, wx.ALL, 5 )
+		self.Karyawan.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		bSizer4.Add( self.Karyawan, 0, wx.ALL, 5 )
 
 		fgSizer8 = wx.FlexGridSizer( 1, 3, 0, 0 )
 		fgSizer8.SetFlexibleDirection( wx.BOTH )
