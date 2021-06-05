@@ -30,6 +30,7 @@ class LoginFrame(ui.Login):
             if username == tempUsername[i] and password == tempPassword[i]:
                 if tempRole[i] == "Owner":
                     OwnerFrame.Show()
+                    LoginFrame.Hide()
                 elif tempRole[i] != "Owner":
                     OwnerFrame.Show()
 
