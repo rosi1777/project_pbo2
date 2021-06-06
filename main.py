@@ -1,3 +1,4 @@
+from wx.core import MessageBox
 import ui
 import wx
 import rajaes
@@ -22,6 +23,7 @@ class LoginFrame(ui.Login):
         tempPassword = []
         tempNama = []
         tempRole = []
+        login=False
 
         for x in listOwner:
             tempUsername.append(x[1])
@@ -39,10 +41,16 @@ class LoginFrame(ui.Login):
             if username == tempUsername[i] and password == tempPassword[i]:
                 if tempRole[i] == "Owner":
                     OwnerFrame.Show()
+                    login=True
                     self.Destroy()
                 elif tempRole[i] != "Owner":
                     EmployeeFrame.Show()
                     self.Destroy()
+                    login=True
+
+        if login!=True:
+            alert=wx.MessageDialog(None, "username dan password salah","pemeberitahuan", wx.YES_DEFAULT)
+            asw=alert.ShowModal()
 
 
 class OwnerFrame(ui.OwnerFrame):
@@ -320,6 +328,8 @@ class OwnerFrame(ui.OwnerFrame):
 
         self.Pesanan.Fit()
         self.dataPesanan.Layout()
+
+        
         
 
 class EmployeeFrame(ui.EmployeeFrame):
