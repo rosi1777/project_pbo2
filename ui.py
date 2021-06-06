@@ -370,7 +370,7 @@ class OwnerFrame ( wx.Frame ):
 		self.Akun = wx.grid.Grid( self.infoAkun, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.Akun.CreateGrid( 2, 4 )
+		self.Akun.CreateGrid( 1, 3 )
 		self.Akun.EnableEditing( True )
 		self.Akun.EnableGridLines( True )
 		self.Akun.EnableDragGridSize( False )
@@ -400,7 +400,7 @@ class OwnerFrame ( wx.Frame ):
 		self.infoAkun.SetSizer( fgSizer2 )
 		self.infoAkun.Layout()
 		fgSizer2.Fit( self.infoAkun )
-		self.m_notebook1.AddPage( self.infoAkun, u"Info Akun", True )
+		self.m_notebook1.AddPage( self.infoAkun, u"Info Akun", False )
 		self.dataBarang = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer3 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer3.SetFlexibleDirection( wx.BOTH )
@@ -409,7 +409,7 @@ class OwnerFrame ( wx.Frame ):
 		self.Barang = wx.grid.Grid( self.dataBarang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.Barang.CreateGrid( 5, 7 )
+		self.Barang.CreateGrid( 5, 5 )
 		self.Barang.EnableEditing( True )
 		self.Barang.EnableGridLines( True )
 		self.Barang.EnableDragGridSize( False )
@@ -436,7 +436,7 @@ class OwnerFrame ( wx.Frame ):
 		self.dataBarang.SetSizer( fgSizer3 )
 		self.dataBarang.Layout()
 		fgSizer3.Fit( self.dataBarang )
-		self.m_notebook1.AddPage( self.dataBarang, u"Data Barang", False )
+		self.m_notebook1.AddPage( self.dataBarang, u"Data Barang", True )
 		self.dataPesanan = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer4 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer4.SetFlexibleDirection( wx.BOTH )

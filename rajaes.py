@@ -37,7 +37,7 @@ class Employee(RajaEs):
         self.executeQuery(self.query)
 
     def getDataEmployee(self):
-        self.query = "SELECT username, password, nama, gender, alamat, telepon, tanggalMasuk FROM employee"
+        self.query = "SELECT * FROM employee"
         print('self.query : ', self.query)
         result = self.executeQuery(self.query, True)
         return result
@@ -46,6 +46,22 @@ class Item(RajaEs):
 
     def getDataItem(self):
         self.query = "SELECT * FROM item"
+        print('self.query : ', self.query)
+        result = self.executeQuery(self.query, True)
+        return result
+
+class Order(RajaEs):
+
+    def getDataOrder(self):
+        self.query = "SELECT id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status FROM ordered WHERE status = 'proses'"
+        print('self.query : ', self.query)
+        result = self.executeQuery(self.query, True)
+        return result
+
+class Sale(RajaEs):
+
+    def getDataSale(self):
+        self.query = "SELECT id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status FROM ordered WHERE status = 'selesai'"
         print('self.query : ', self.query)
         result = self.executeQuery(self.query, True)
         return result
