@@ -53,6 +53,7 @@ class OwnerFrame(ui.OwnerFrame):
         self.showOrder()
         self.showSale()
         self.showEmployee()
+        self.AddButtonEditDelete()
 
     def showAccount(self):
 
@@ -232,6 +233,28 @@ class OwnerFrame(ui.OwnerFrame):
             self.Karyawan.SetCellValue(row, 7, tanggalMasuk)
             self.lstIdEmployee.append(id)
             row += 1
+
+    def AddButtonEditDelete(self):
+        jmlKolom = self.Karyawan.GetNumberCols()
+        self.Karyawan.AppendCols(2)
+        colEdit = jmlKolom
+        colDelete = jmlKolom + 1
+
+        self.Karyawan.SetColLabelValue(colEdit, '')
+        self.Karyawan.SetColLabelValue(colDelete, '')
+
+        for row in range(self.Karyawan.GetNumberRows()):
+            self.Karyawan.SetCellValue(row, colEdit, 'Edit')
+            self.Karyawan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+            self.Karyawan.SetCellTextColour(row, colEdit, wx.WHITE)
+
+            self.Karyawan.SetCellValue(row, colDelete, 'Delete')
+            self.Karyawan.SetCellBackgroundColour(row, colDelete, wx.RED)
+            self.Karyawan.SetCellTextColour(row, colDelete, wx.WHITE)
+
+        self.Karyawan.Fit()
+        self.infoAkun.Layout()
+        
 
 class EmployeeFrame(ui.EmployeeFrame):
     def __init__(self, parent):
