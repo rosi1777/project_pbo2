@@ -409,7 +409,7 @@ class OwnerFrame ( wx.Frame ):
 		self.Barang = wx.grid.Grid( self.dataBarang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.Barang.CreateGrid( 0, 0 )
+		self.Barang.CreateGrid( 5, 7 )
 		self.Barang.EnableEditing( True )
 		self.Barang.EnableGridLines( True )
 		self.Barang.EnableDragGridSize( False )

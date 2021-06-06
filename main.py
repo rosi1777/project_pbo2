@@ -92,11 +92,15 @@ class OwnerFrame(ui.OwnerFrame):
 
             print(row, '. ', item_row)
             id, nama, hargaJual, hargaBeli, stok = item_row
-            self.Barang.SetCellValue(row, 0, id)
+            ids = str(id)
+            hargaJuals = str(hargaJual)
+            hargaBelis = str(hargaBeli)
+            stoks = str(stok)
+            self.Barang.SetCellValue(row, 0, ids)
             self.Barang.SetCellValue(row, 1, nama)
-            self.Barang.SetCellValue(row, 2, hargaJual)
-            self.Barang.SetCellValue(row, 3, hargaBeli)
-            self.Barang.SetCellValue(row, 4, stok)
+            self.Barang.SetCellValue(row, 2, hargaJuals)
+            self.Barang.SetCellValue(row, 3, hargaBelis)
+            self.Barang.SetCellValue(row, 4, stoks)
             self.lstIdItem.append(id)
             row += 1
 
