@@ -370,7 +370,7 @@ class OwnerFrame ( wx.Frame ):
 		self.Akun = wx.grid.Grid( self.infoAkun, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.Akun.CreateGrid( 3, 4 )
+		self.Akun.CreateGrid( 2, 4 )
 		self.Akun.EnableEditing( True )
 		self.Akun.EnableGridLines( True )
 		self.Akun.EnableDragGridSize( False )
@@ -409,7 +409,7 @@ class OwnerFrame ( wx.Frame ):
 		self.Barang = wx.grid.Grid( self.dataBarang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.Barang.CreateGrid( 7, 5 )
+		self.Barang.CreateGrid( 0, 0 )
 		self.Barang.EnableEditing( True )
 		self.Barang.EnableGridLines( True )
 		self.Barang.EnableDragGridSize( False )

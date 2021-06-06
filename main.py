@@ -49,6 +49,7 @@ class OwnerFrame(ui.OwnerFrame):
     def __init__(self, parent):
         ui.OwnerFrame.__init__(self, parent)
         self.showAccount()
+        self.showItem()
 
     def showAccount(self):
 
@@ -68,12 +69,36 @@ class OwnerFrame(ui.OwnerFrame):
 
             print(row, '. ', owner_row)
             id, username, password, nama, role = owner_row
-            self.Akun.SetCellValue(row, 0,username)
+            self.Akun.SetCellValue(row, 0, username)
             self.Akun.SetCellValue(row, 1, password)
             self.Akun.SetCellValue(row, 2, nama)
             self.lstIdOwner.append(id)
             row += 1
+    
+    def showItem(self):
+        colums = ['ID', 'Nama', 'Harga Jual', 'Harga Beli', "Stok"]
+        self.Barang.AppendCols(len(colums))
 
+        self.item = rajaes.Item()
+        listItem = self.item.getDataItem()
+        row = 0
+
+        self.lstIdItem = []
+        for col in range(len(colums)):
+            self.Barang.SetColLabelValue(
+                col, colums[col])
+        for item_row in listItem:
+            self.Barang.AppendRows(1)
+
+            print(row, '. ', item_row)
+            id, nama, hargaJual, hargaBeli, stok = item_row
+            self.Barang.SetCellValue(row, 0, id)
+            self.Barang.SetCellValue(row, 1, nama)
+            self.Barang.SetCellValue(row, 2, hargaJual)
+            self.Barang.SetCellValue(row, 3, hargaBeli)
+            self.Barang.SetCellValue(row, 4, stok)
+            self.lstIdItem.append(id)
+            row += 1
 
 class EmployeeFrame(ui.EmployeeFrame):
     def __init__(self, parent):

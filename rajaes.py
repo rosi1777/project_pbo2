@@ -41,3 +41,11 @@ class Employee(RajaEs):
         print('self.query : ', self.query)
         result = self.executeQuery(self.query, True)
         return result
+
+class Item(RajaEs):
+
+    def getDataItem(self):
+        self.query = "SELECT * FROM item"
+        print('self.query : ', self.query)
+        result = self.executeQuery(self.query, True)
+        return result
