@@ -369,8 +369,22 @@ class OwnerFrame ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 836,472 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTION ) )
 
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
+
+		fgSizer63 = wx.FlexGridSizer( 0, 2, 0, 0 )
+		fgSizer63.SetFlexibleDirection( wx.BOTH )
+		fgSizer63.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+
+		fgSizer63.Add( ( 677, 0), 1, wx.EXPAND, 5 )
+
+		self.logout = wx.Button( self, wx.ID_ANY, u"Logout", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer63.Add( self.logout, 0, wx.ALL, 5 )
+
+
+		bSizer3.Add( fgSizer63, 1, wx.EXPAND, 5 )
 
 		self.m_notebook1 = wx.Notebook( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.infoAkun = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
@@ -585,13 +599,13 @@ class OwnerFrame ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.logout.Bind( wx.EVT_BUTTON, self.logoutBtn )
+		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
 		self.Karyawan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
                      self.tabelEmployeeOnGridCmdSelectCell)
 
-		# Connect Events
-		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
-
-	def __del__( self ):
+	def __del__(self):
 		pass
 
 	def tabelEmployeeOnGridCmdSelectCell(self, event):
@@ -599,6 +613,9 @@ class OwnerFrame ( wx.Frame ):
 
 
 	# Virtual event handlers, overide them in your derived class
+	def logoutBtn( self, event ):
+		event.Skip()
+
 	def AdEmpBtnOnButtonClick( self, event ):
 		event.Skip()
 

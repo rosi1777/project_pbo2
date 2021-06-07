@@ -68,10 +68,10 @@ class LoginFrame(ui.Login):
                 if tempRole[i] == "Owner":
                     OwnerFrame.Show()
                     login=True
-                    self.Destroy()
+                    self.Hide()
                 elif tempRole[i] != "Owner":
                     EmployeeFrame.Show()
-                    self.Destroy()
+                    self.Hide()
                     login=True
 
         if login!=True:
@@ -91,6 +91,10 @@ class OwnerFrame(ui.OwnerFrame):
         # self.AddBtnSale()
         # self.AddBtnBarang()
         # self.AddBtnPesanan()
+        
+    def logoutBtn(self, event):
+        OwnerFrame.Hide()
+        LoginFrame.Show()
 
     def showAccount(self):
 
