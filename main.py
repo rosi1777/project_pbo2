@@ -3,13 +3,21 @@ import ui
 import wx
 import rajaes
 
+class dlgAdd(ui.InsertKaryawan):
+    def __init__(self, parent, id_person=-1):
+        ui.InsertKaryawan.__init__(self, parent)
+        self.parent=parent
+        self.id_person=id_person
+    def submitOnButtonClick( self, event ):
+        dlg= wx.MessageDialog(self, 'simpan data', 'Informasi', style=wx.YES_NO)
+        retval= dlg.ShowModal()
+        self.Destroy()
 
 class LoginFrame(ui.Login):
     def __init__(self, parent):
         ui.Login.__init__(self, parent)
 
-    def btnLogin(self, event):
-
+    def loginBtnOnButtonClick( self, event ):
         self.owner = rajaes.Owner()
         listOwner = self.owner.getDataOwner()
 
@@ -62,9 +70,9 @@ class OwnerFrame(ui.OwnerFrame):
         self.showSale()
         self.showEmployee()
         self.AddBtnKaryawan()
-        self.AddBtnSale()
-        self.AddBtnBarang()
-        self.AddBtnPesanan()
+        # self.AddBtnSale()
+        # self.AddBtnBarang()
+        # self.AddBtnPesanan()
 
     def showAccount(self):
 
@@ -133,6 +141,9 @@ class OwnerFrame(ui.OwnerFrame):
             self.Barang.SetCellValue(row, 4, stoks)
             self.lstIdItem.append(id)
             row += 1
+        
+        self.Barang.Fit()
+        self.dataBarang.Layout()
 
     def showOrder(self):
         n_cols = self.Pesanan.GetNumberCols()
@@ -170,6 +181,10 @@ class OwnerFrame(ui.OwnerFrame):
             self.lstIdOrder.append(id)
             row += 1
 
+        self.Pesanan.Fit()
+        self.dataPesanan.Layout()
+
+
     def showSale(self):
         n_cols = self.Penjualan.GetNumberCols()
         n_rows = self.Penjualan.GetNumberRows()
@@ -206,6 +221,8 @@ class OwnerFrame(ui.OwnerFrame):
             self.Penjualan.SetCellValue(row, 6, status)
             self.lstIdSale.append(id)
             row += 1
+        self.Penjualan.Fit()
+        self.dataPenjualan.Layout()
 
     def showEmployee(self):
         n_cols = self.Karyawan.GetNumberCols()
@@ -244,27 +261,30 @@ class OwnerFrame(ui.OwnerFrame):
             self.Karyawan.SetCellValue(row, 7, tanggalMasuk)
             self.lstIdEmployee.append(id)
             row += 1
+    
+    def AdEmpBtnOnButtonClick( self, event ):
+        dlg = dlgAdd(self)
+        dlg.ShowModal()
 
-    def AddBtnSale(self):
-        jmlKolom = self.Penjualan.GetNumberCols()
-        self.Penjualan.AppendCols(2)
-        colEdit = jmlKolom
-        colDelete = jmlKolom + 1
+    # def AddBtnSale(self):
+    #     jmlKolom = self.Penjualan.GetNumberCols()
+    #     self.Penjualan.AppendCols(2)
+    #     colEdit = jmlKolom
+    #     colDelete = jmlKolom + 1
 
-        self.Penjualan.SetColLabelValue(colEdit, '')
-        self.Penjualan.SetColLabelValue(colDelete, '')
+    #     self.Penjualan.SetColLabelValue(colEdit, '')
+    #     self.Penjualan.SetColLabelValue(colDelete, '')
 
-        for row in range(self.Penjualan.GetNumberRows()):
-            self.Penjualan.SetCellValue(row, colEdit, 'Edit')
-            self.Penjualan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
-            self.Penjualan.SetCellTextColour(row, colEdit, wx.WHITE)
+    #     for row in range(self.Penjualan.GetNumberRows()):
+    #         self.Penjualan.SetCellValue(row, colEdit, 'Edit')
+    #         self.Penjualan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+    #         self.Penjualan.SetCellTextColour(row, colEdit, wx.WHITE)
 
-            self.Penjualan.SetCellValue(row, colDelete, 'Delete')
-            self.Penjualan.SetCellBackgroundColour(row, colDelete, wx.RED)
-            self.Penjualan.SetCellTextColour(row, colDelete, wx.WHITE)
+    #         self.Penjualan.SetCellValue(row, colDelete, 'Delete')
+    #         self.Penjualan.SetCellBackgroundColour(row, colDelete, wx.RED)
+    #         self.Penjualan.SetCellTextColour(row, colDelete, wx.WHITE)
 
-        self.Penjualan.Fit()
-        self.dataPenjualan.Layout()
+        
 
     def AddBtnKaryawan(self):
         jmlKolom = self.Karyawan.GetNumberCols()
@@ -287,48 +307,45 @@ class OwnerFrame(ui.OwnerFrame):
         self.Karyawan.Fit()
         self.infoAkun.Layout()
 
-    def AddBtnBarang(self):
-        jmlKolom = self.Barang.GetNumberCols()
-        self.Barang.AppendCols(2)
-        colEdit = jmlKolom
-        colDelete = jmlKolom + 1
+    # def AddBtnBarang(self):
+    #     jmlKolom = self.Barang.GetNumberCols()
+    #     self.Barang.AppendCols(2)
+    #     colEdit = jmlKolom
+    #     colDelete = jmlKolom + 1
 
-        self.Barang.SetColLabelValue(colEdit, '')
-        self.Barang.SetColLabelValue(colDelete, '')
+    #     self.Barang.SetColLabelValue(colEdit, '')
+    #     self.Barang.SetColLabelValue(colDelete, '')
 
-        for row in range(self.Barang.GetNumberRows()):
-            self.Barang.SetCellValue(row, colEdit, 'Edit')
-            self.Barang.SetCellBackgroundColour(row, colEdit, wx.BLUE)
-            self.Barang.SetCellTextColour(row, colEdit, wx.WHITE)
+    #     for row in range(self.Barang.GetNumberRows()):
+    #         self.Barang.SetCellValue(row, colEdit, 'Edit')
+    #         self.Barang.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+    #         self.Barang.SetCellTextColour(row, colEdit, wx.WHITE)
 
-            self.Barang.SetCellValue(row, colDelete, 'Delete')
-            self.Barang.SetCellBackgroundColour(row, colDelete, wx.RED)
-            self.Barang.SetCellTextColour(row, colDelete, wx.WHITE)
+    #         self.Barang.SetCellValue(row, colDelete, 'Delete')
+    #         self.Barang.SetCellBackgroundColour(row, colDelete, wx.RED)
+    #         self.Barang.SetCellTextColour(row, colDelete, wx.WHITE)
 
-        self.Barang.Fit()
-        self.dataBarang.Layout()
+        
     
-    def AddBtnPesanan(self):
-        jmlKolom = self.Pesanan.GetNumberCols()
-        self.Pesanan.AppendCols(2)
-        colEdit = jmlKolom
-        colDelete = jmlKolom + 1
+    # def AddBtnPesanan(self):
+    #     jmlKolom = self.Pesanan.GetNumberCols()
+    #     self.Pesanan.AppendCols(2)
+    #     colEdit = jmlKolom
+    #     colDelete = jmlKolom + 1
 
-        self.Pesanan.SetColLabelValue(colEdit, '')
-        self.Pesanan.SetColLabelValue(colDelete, '')
+    #     self.Pesanan.SetColLabelValue(colEdit, '')
+    #     self.Pesanan.SetColLabelValue(colDelete, '')
 
-        for row in range(self.Pesanan.GetNumberRows()):
-            self.Pesanan.SetCellValue(row, colEdit, 'Edit')
-            self.Pesanan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
-            self.Pesanan.SetCellTextColour(row, colEdit, wx.WHITE)
+    #     for row in range(self.Pesanan.GetNumberRows()):
+    #         self.Pesanan.SetCellValue(row, colEdit, 'Edit')
+    #         self.Pesanan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+    #         self.Pesanan.SetCellTextColour(row, colEdit, wx.WHITE)
 
-            self.Pesanan.SetCellValue(row, colDelete, 'Delete')
-            self.Pesanan.SetCellBackgroundColour(row, colDelete, wx.RED)
-            self.Pesanan.SetCellTextColour(row, colDelete, wx.WHITE)
+    #         self.Pesanan.SetCellValue(row, colDelete, 'Delete')
+    #         self.Pesanan.SetCellBackgroundColour(row, colDelete, wx.RED)
+    #         self.Pesanan.SetCellTextColour(row, colDelete, wx.WHITE)
 
-        self.Pesanan.Fit()
-        self.dataPesanan.Layout()
-
+        
         
         
 

@@ -77,12 +77,15 @@ class Login ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
-		self.loginBtn.Bind(wx.EVT_BUTTON, self.btnLogin)
+		# Connect Events
+		self.loginBtn.Bind( wx.EVT_BUTTON, self.loginBtnOnButtonClick )
 
-	def __del__(self):
+	def __del__( self ):
 		pass
 
-	def btnLogin(self, event):
+
+	# Virtual event handlers, overide them in your derived class
+	def loginBtnOnButtonClick( self, event ):
 		event.Skip()
 
 
@@ -149,7 +152,7 @@ class InsertKaryawan ( wx.Dialog ):
 		self.m_textCtrl6 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		DialogInser.Add( self.m_textCtrl6, 0, wx.ALL, 5 )
 
-		self.inpTahun = wx.StaticText( self, wx.ID_ANY, u"Tahun Masuk", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.inpTahun = wx.StaticText( self, wx.ID_ANY, u"Tanggal Masuk", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpTahun.Wrap( -1 )
 
 		DialogInser.Add( self.inpTahun, 0, wx.ALL, 5 )
@@ -169,8 +172,16 @@ class InsertKaryawan ( wx.Dialog ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.submit.Bind( wx.EVT_BUTTON, self.submitOnButtonClick )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def submitOnButtonClick( self, event ):
+		event.Skip()
 
 
 ###########################################################################
@@ -436,7 +447,7 @@ class OwnerFrame ( wx.Frame ):
 		self.dataBarang.SetSizer( fgSizer3 )
 		self.dataBarang.Layout()
 		fgSizer3.Fit( self.dataBarang )
-		self.m_notebook1.AddPage( self.dataBarang, u"Data Barang", True )
+		self.m_notebook1.AddPage( self.dataBarang, u"Data Barang", False )
 		self.dataPesanan = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer4 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer4.SetFlexibleDirection( wx.BOTH )
@@ -542,8 +553,8 @@ class OwnerFrame ( wx.Frame ):
 		fgSizer8.SetFlexibleDirection( wx.BOTH )
 		fgSizer8.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_button3 = wx.Button( self.dataKaryawan, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer8.Add( self.m_button3, 0, wx.ALL, 5 )
+		self.AdEmpBtn = wx.Button( self.dataKaryawan, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer8.Add( self.AdEmpBtn, 0, wx.ALL, 5 )
 
 		self.m_button4 = wx.Button( self.dataKaryawan, wx.ID_ANY, u"Ubah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer8.Add( self.m_button4, 0, wx.ALL, 5 )
@@ -558,7 +569,7 @@ class OwnerFrame ( wx.Frame ):
 		self.dataKaryawan.SetSizer( bSizer4 )
 		self.dataKaryawan.Layout()
 		bSizer4.Fit( self.dataKaryawan )
-		self.m_notebook1.AddPage( self.dataKaryawan, u"Data Karyawan", False )
+		self.m_notebook1.AddPage( self.dataKaryawan, u"Data Karyawan", True )
 
 		bSizer3.Add( self.m_notebook1, 1, wx.EXPAND |wx.ALL, 5 )
 
@@ -568,8 +579,16 @@ class OwnerFrame ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def AdEmpBtnOnButtonClick( self, event ):
+		event.Skip()
 
 
 ###########################################################################
