@@ -4,14 +4,32 @@ import wx
 import rajaes
 
 class dlgAdd(ui.InsertKaryawan):
-    def __init__(self, parent, id_person=-1):
+    def __init__(self, parent, id=-1):
         ui.InsertKaryawan.__init__(self, parent)
         self.parent=parent
-        self.id_person=id_person
+        self.id = id
+
     def submitOnButtonClick( self, event ):
         dlg= wx.MessageDialog(self, 'simpan data', 'Informasi', style=wx.YES_NO)
         retval= dlg.ShowModal()
+
+        if self.id == -1:
+            self.parent.insertDataEmployee(self.ctrlUsername.GetValue(), self.ctrlPassword.GetValue(
+            ), self.ctrlNama.GetValue(), self.ctrlGender.GetValue(), self.ctrlAlamat.GetValue(), self.ctrlTelepon.GetValue(), self.ctrlTahunMasuk.GetValue())
+        else:
+            self.parent.updateDataEmp(self.id, self.ctrlUsername.GetValue(), self.ctrlPassword.GetValue(
+            ), self.ctrlNama.GetValue(), self.ctrlGender.GetValue(), self.ctrlAlamat.GetValue(), self.ctrlTelepon.GetValue(), self.ctrlTahunMasuk.GetValue())
+
         self.Destroy()
+
+    def fillDataEmployee(self, username, password, nama, gender, alamat, telepon, tanggalMasuk):
+        self.ctrlUsername.SetValue(username)
+        self.ctrlPassword.SetValue(password)
+        self.ctrlNama.SetValue(nama)
+        self.ctrlGender.SetValue(gender)
+        self.ctrlAlamat.SetValue(alamat)
+        self.ctrlTelepon.SetValue(telepon)
+        self.ctrlTahunMasuk.SetValue(tanggalMasuk)
 
 class LoginFrame(ui.Login):
     def __init__(self, parent):
@@ -265,6 +283,46 @@ class OwnerFrame(ui.OwnerFrame):
     def AdEmpBtnOnButtonClick( self, event ):
         dlg = dlgAdd(self)
         dlg.ShowModal()
+
+    def insertDataEmployee(self, username, password, nama, gender, alamat, telepon, tanggalMasuk):
+        self.employee.addDataEmployee(
+            username, password, nama, gender, alamat, telepon, tanggalMasuk)
+        self.showEmployee()
+        self.AddBtnKaryawan()
+
+    def updateDataEmp(self, id, username, password, nama, gender, alamat, telepon, tanggalMasuk):
+        self.employee.updateDataEmployee(id, username, password, nama, gender, alamat, telepon, tanggalMasuk)
+        self.showEmployee()
+        self.AddBtnKaryawan()
+
+    def tabelEmployeeOnGridCmdSelectCell(self, event):
+        baris = event.GetRow()
+        kolom = event.GetCol()
+
+        print('baris: ', baris)
+        print('kolom: ', kolom)
+        if kolom == 8:
+            # wx.MessageBox('Edit data', 'Informasi')
+            id = self.lstIdEmployee[baris]
+            dlg = dlgAdd(self, id)
+            userName = self.Karyawan.GetCellValue(baris, 1)
+            psw = self.Karyawan.GetCellValue(baris, 2)
+            name = self.Karyawan.GetCellValue(baris, 3)
+            gnder = self.Karyawan.GetCellValue(baris, 4)
+            address = self.Karyawan.GetCellValue(baris, 5)
+            phone = self.Karyawan.GetCellValue(baris, 6)
+            dat = self.Karyawan.GetCellValue(baris, 7)
+            dlg.fillDataEmployee(userName, psw, name, gnder, address, phone, dat)
+            dlg.ShowModal()
+        elif kolom == 9:
+            dlg = wx.MessageDialog(
+                self, 'Hapus data', 'Informasi', style=wx.YES_NO)
+            retval = dlg.ShowModal()
+            if retval == wx.ID_YES:
+                print('hapus')
+                self.employee.deleteEmployee(self.lstIdEmployee[baris])
+                self.showEmployee()
+                self.AddBtnKaryawan()
 
     # def AddBtnSale(self):
     #     jmlKolom = self.Penjualan.GetNumberCols()

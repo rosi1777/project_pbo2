@@ -29,10 +29,9 @@ class Owner(RajaEs):
 
 class Employee(RajaEs):
 
-    def updateDataEmployee(self, username, password, nama, gender, alamat, telepon, tanggalMasuk, idKaryawan):
-        self.query = "UPDATE employee SET username = ?, password = ?, nama = ?, gender = ?, alamat = ?, telepon = ?, tanggalMasuk = ? WHERE id = ?"
-        self.query = self.query % (
-            username, password, nama, gender, alamat, telepon, tanggalMasuk, idKaryawan)
+    def updateDataEmployee(self, id, username, password, nama, gender, alamat, telepon, tanggalMasuk):
+        self.query = "UPDATE employee SET username = \'%s\', password = \'%s\', nama = \'%s\', gender = \'%s\', alamat = \'%s\', telepon = \'%s\', tanggalMasuk = \'%s\' WHERE id = %i"
+        self.query = self.query % (username, password, nama, gender, alamat, telepon, tanggalMasuk, id)
         print('self.query : ', self.query)
         self.executeQuery(self.query)
 
@@ -41,6 +40,19 @@ class Employee(RajaEs):
         print('self.query : ', self.query)
         result = self.executeQuery(self.query, True)
         return result
+
+    def addDataEmployee(self, username, password, nama, gender, alamat, telepon, tanggalMasuk):
+        self.query = 'INSERT INTO employee (username, password, nama, gender, alamat, telepon, tanggalMasuk) VALUES (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')'
+        self.query = self.query % (
+            username, password, nama, gender, alamat, telepon, tanggalMasuk)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def deleteEmployee(self, id):
+        self.query = 'DELETE FROM employee where id = %i'
+        self.query = self.query % (id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
 
 class Item(RajaEs):
 

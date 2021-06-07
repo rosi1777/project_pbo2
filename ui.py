@@ -109,56 +109,56 @@ class InsertKaryawan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpUsername, 0, wx.ALL, 5 )
 
-		self.m_textCtrl9 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl9, 0, wx.ALL, 5 )
+		self.ctrlUsername = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlUsername, 0, wx.ALL, 5 )
 
 		self.inpPassword = wx.StaticText( self, wx.ID_ANY, u"Password", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpPassword.Wrap( -1 )
 
 		DialogInser.Add( self.inpPassword, 0, wx.ALL, 5 )
 
-		self.m_textCtrl10 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl10, 0, wx.ALL, 5 )
+		self.ctrlPassword = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlPassword, 0, wx.ALL, 5 )
 
 		self.inpNama = wx.StaticText( self, wx.ID_ANY, u"Nama", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpNama.Wrap( -1 )
 
 		DialogInser.Add( self.inpNama, 0, wx.ALL, 5 )
 
-		self.m_textCtrl3 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl3, 0, wx.ALL, 5 )
+		self.ctrlNama = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlNama, 0, wx.ALL, 5 )
 
 		self.inpGender = wx.StaticText( self, wx.ID_ANY, u"Gender", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpGender.Wrap( -1 )
 
 		DialogInser.Add( self.inpGender, 0, wx.ALL, 5 )
 
-		self.m_textCtrl16 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl16, 0, wx.ALL, 5 )
+		self.ctrlGender = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlGender, 0, wx.ALL, 5 )
 
 		self.inpALamat = wx.StaticText( self, wx.ID_ANY, u"Alamat", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpALamat.Wrap( -1 )
 
 		DialogInser.Add( self.inpALamat, 0, wx.ALL, 5 )
 
-		self.m_textCtrl5 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl5, 0, wx.ALL, 5 )
+		self.ctrlAlamat = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlAlamat, 0, wx.ALL, 5 )
 
 		self.inpTelepon = wx.StaticText( self, wx.ID_ANY, u"Telepon", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpTelepon.Wrap( -1 )
 
 		DialogInser.Add( self.inpTelepon, 0, wx.ALL, 5 )
 
-		self.m_textCtrl6 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl6, 0, wx.ALL, 5 )
+		self.ctrlTelepon = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlTelepon, 0, wx.ALL, 5 )
 
 		self.inpTahun = wx.StaticText( self, wx.ID_ANY, u"Tanggal Masuk", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.inpTahun.Wrap( -1 )
 
 		DialogInser.Add( self.inpTahun, 0, wx.ALL, 5 )
 
-		self.m_textCtrl17 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl17, 0, wx.ALL, 5 )
+		self.ctrlTahunMasuk = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.ctrlTahunMasuk, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -549,6 +549,9 @@ class OwnerFrame ( wx.Frame ):
 		self.Karyawan.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
 		bSizer4.Add( self.Karyawan, 0, wx.ALL, 5 )
 
+
+		bSizer4.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
 		fgSizer8 = wx.FlexGridSizer( 1, 3, 0, 0 )
 		fgSizer8.SetFlexibleDirection( wx.BOTH )
 		fgSizer8.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
@@ -556,14 +559,17 @@ class OwnerFrame ( wx.Frame ):
 		self.AdEmpBtn = wx.Button( self.dataKaryawan, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer8.Add( self.AdEmpBtn, 0, wx.ALL, 5 )
 
-		self.m_button4 = wx.Button( self.dataKaryawan, wx.ID_ANY, u"Ubah", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer8.Add( self.m_button4, 0, wx.ALL, 5 )
-
-		self.m_button5 = wx.Button( self.dataKaryawan, wx.ID_ANY, u"Hapus", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer8.Add( self.m_button5, 0, wx.ALL, 5 )
-
 
 		bSizer4.Add( fgSizer8, 1, wx.EXPAND, 5 )
+
+
+		bSizer4.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+
+		bSizer4.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+
+		bSizer4.Add( ( 0, 0), 1, wx.EXPAND, 5 )
 
 
 		self.dataKaryawan.SetSizer( bSizer4 )
@@ -579,11 +585,17 @@ class OwnerFrame ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
+		self.Karyawan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
+                     self.tabelEmployeeOnGridCmdSelectCell)
+
 		# Connect Events
 		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
 
 	def __del__( self ):
 		pass
+
+	def tabelEmployeeOnGridCmdSelectCell(self, event):
+		event.Skip()
 
 
 	# Virtual event handlers, overide them in your derived class
