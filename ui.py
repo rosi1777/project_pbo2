@@ -601,6 +601,7 @@ class OwnerFrame ( wx.Frame ):
 
 		# Connect Events
 		self.logout.Bind( wx.EVT_BUTTON, self.logoutBtn )
+		self.ubahAkun.Bind( wx.EVT_BUTTON, self.UpdateAccount )
 		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
 		self.Karyawan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
                      self.tabelEmployeeOnGridCmdSelectCell)
@@ -614,6 +615,9 @@ class OwnerFrame ( wx.Frame ):
 
 	# Virtual event handlers, overide them in your derived class
 	def logoutBtn( self, event ):
+		event.Skip()
+
+	def UpdateAccount( self, event ):
 		event.Skip()
 
 	def AdEmpBtnOnButtonClick( self, event ):
@@ -795,5 +799,68 @@ class EmployeeFrame ( wx.Frame ):
 
 	def __del__( self ):
 		pass
+
+
+###########################################################################
+## Class UpdateOwner
+###########################################################################
+
+class UpdateOwner ( wx.Dialog ):
+
+	def __init__( self, parent ):
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 420,282 ), style = wx.DEFAULT_DIALOG_STYLE )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		fgSizer69 = wx.FlexGridSizer( 0, 2, 0, 0 )
+		fgSizer69.SetFlexibleDirection( wx.BOTH )
+		fgSizer69.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+		self.username = wx.StaticText( self, wx.ID_ANY, u"Username", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.username.Wrap( -1 )
+
+		fgSizer69.Add( self.username, 0, wx.ALL, 5 )
+
+		self.usrCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer69.Add( self.usrCtrl, 0, wx.ALL, 5 )
+
+		self.password = wx.StaticText( self, wx.ID_ANY, u"Password", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.password.Wrap( -1 )
+
+		fgSizer69.Add( self.password, 0, wx.ALL, 5 )
+
+		self.pswCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer69.Add( self.pswCtrl, 0, wx.ALL, 5 )
+
+		self.nama = wx.StaticText( self, wx.ID_ANY, u"Nama", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.nama.Wrap( -1 )
+
+		fgSizer69.Add( self.nama, 0, wx.ALL, 5 )
+
+		self.nameCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer69.Add( self.nameCtrl, 0, wx.ALL, 5 )
+
+
+		fgSizer69.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+		self.submit = wx.Button( self, wx.ID_ANY, u"Submit", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer69.Add( self.submit, 0, wx.ALL, 5 )
+
+
+		self.SetSizer( fgSizer69 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.submit.Bind( wx.EVT_BUTTON, self.submitUpdateOwner )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def submitUpdateOwner( self, event ):
+		event.Skip()
 
 

@@ -31,6 +31,24 @@ class dlgAdd(ui.InsertKaryawan):
         self.ctrlTelepon.SetValue(telepon)
         self.ctrlTahunMasuk.SetValue(tanggalMasuk)
 
+class dlgOwner(ui.UpdateOwner):
+    def __init__(self, parent):
+        ui.UpdateOwner.__init__(self, parent)
+        self.parent = parent
+
+    def submitUpdateOwner(self, event):
+        dlg = wx.MessageDialog(self, 'simpan data',
+                               'Informasi', style=wx.YES_NO)
+
+        self.parent.updateDataO(self.usrCtrl.GetValue(), self.pswCtrl.GetValue(), self.nameCtrl.GetValue())
+
+        self.Destroy()
+
+    def fillDataOwner(self, username, password, nama):
+        self.usrCtrl.SetValue(username)
+        self.pswCtrl.SetValue(password)
+        self.nameCtrl.SetValue(nama)
+
 class LoginFrame(ui.Login):
     def __init__(self, parent):
         ui.Login.__init__(self, parent)
@@ -126,6 +144,14 @@ class OwnerFrame(ui.OwnerFrame):
             self.Akun.SetCellValue(row, 2, nama)
             self.lstIdOwner.append(id)
             row += 1
+
+    def UpdateAccount(self, event):
+        dlgO = dlgOwner(self)
+        dlgO.ShowModal()
+
+    def updateDataO(self, username, password, nama):
+        self.owner.updateDataOwner(username, password, nama)
+        self.showAccount()
     
     def showItem(self):
 

@@ -15,7 +15,7 @@ class RajaEs:
 class Owner(RajaEs):
 
     def updateDataOwner(self, username, password, nama):
-        self.query = "UPDATE owner SET username = ?, password = ?, nama = ? where id = 1"
+        self.query = "UPDATE owner SET username = \'%s\', password = \'%s\', nama = \'%s\' where id = 1"
         self.query = self.query % (username, password, nama)
         print('self.query : ', self.query)
         self.executeQuery(self.query)
