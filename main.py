@@ -187,9 +187,6 @@ class OwnerFrame(ui.OwnerFrame):
         self.showSale()
         self.showEmployee()
         self.AddBtnKaryawan()
-        # self.AddBtnSale()
-        # self.AddBtnBarang()
-        # self.AddBtnPesanan()
 
     def logoutBtn(self, event):
         OwnerFrame.Hide()
