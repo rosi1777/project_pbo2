@@ -625,10 +625,14 @@ class OwnerFrame ( wx.Frame ):
 		self.logout.Bind( wx.EVT_BUTTON, self.logoutBtn )
 		self.ubahAkun.Bind( wx.EVT_BUTTON, self.UpdateAccount )
 		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
+		self.dataKaryawan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
+                         self.tabelEmployeeOnGridCmdSelectCell)
 
 	def __del__( self ):
 		pass
 
+	def tabelEmployeeOnGridCmdSelectCell( self, event):
+		event.Skip()
 
 	# Virtual event handlers, overide them in your derived class
 	def logoutBtn( self, event ):
