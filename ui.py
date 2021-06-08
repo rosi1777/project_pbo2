@@ -21,7 +21,7 @@ class Login ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 655,390 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
 
@@ -99,6 +99,7 @@ class InsertKaryawan ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Insert Data", pos = wx.DefaultPosition, size = wx.Size( 388,494 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		DialogInser = wx.FlexGridSizer( 0, 2, 0, 0 )
 		DialogInser.SetFlexibleDirection( wx.BOTH )
@@ -194,6 +195,7 @@ class InsertBarang ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"InsertBarang", pos = wx.DefaultPosition, size = wx.Size( 291,301 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		DialogInser = wx.FlexGridSizer( 0, 2, 0, 0 )
 		DialogInser.SetFlexibleDirection( wx.BOTH )
@@ -231,6 +233,9 @@ class InsertBarang ( wx.Dialog ):
 		self.m_textCtrl24 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		DialogInser.Add( self.m_textCtrl24, 0, wx.ALL, 5 )
 
+
+		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
 		self.submit = wx.Button( self, wx.ID_ANY, u"submit", wx.DefaultPosition, wx.DefaultSize, 0 )
 		DialogInser.Add( self.submit, 0, wx.ALL, 5 )
 
@@ -240,8 +245,16 @@ class InsertBarang ( wx.Dialog ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.submit.Bind( wx.EVT_BUTTON, self.submitItem )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def submitItem( self, event ):
+		event.Skip()
 
 
 ###########################################################################
@@ -254,6 +267,7 @@ class PenjualanPesanan ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Penjualan dan Pemesanan", pos = wx.DefaultPosition, size = wx.Size( 596,381 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		DialogInser = wx.FlexGridSizer( 0, 4, 0, 0 )
 		DialogInser.SetFlexibleDirection( wx.BOTH )
@@ -264,8 +278,8 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpNama, 0, wx.ALL, 5 )
 
-		self.m_textCtrl3 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl3, 0, wx.ALL, 5 )
+		self.namaCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.namaCtrl, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -278,8 +292,8 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpAlamat, 0, wx.ALL, 5 )
 
-		self.m_textCtrl5 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl5, 0, wx.ALL, 5 )
+		self.alamatCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.alamatCtrl, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -292,8 +306,8 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpBarang, 0, wx.ALL, 5 )
 
-		self.m_textCtrl6 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl6, 0, wx.ALL, 5 )
+		self.barangCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.barangCtrl, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -306,8 +320,8 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpJuml, 0, wx.ALL, 5 )
 
-		self.m_textCtrl24 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl24, 0, wx.ALL, 5 )
+		self.totalCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.totalCtrl, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -320,8 +334,8 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpTanggal, 0, wx.ALL, 5 )
 
-		self.m_textCtrl18 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl18, 0, wx.ALL, 5 )
+		self.dateCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.dateCtrl, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -334,8 +348,8 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		DialogInser.Add( self.inpStatus, 0, wx.ALL, 5 )
 
-		self.m_textCtrl19 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		DialogInser.Add( self.m_textCtrl19, 0, wx.ALL, 5 )
+		self.statusCtrl = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		DialogInser.Add( self.statusCtrl, 0, wx.ALL, 5 )
 
 
 		DialogInser.Add( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -355,8 +369,16 @@ class PenjualanPesanan ( wx.Dialog ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.submit.Bind( wx.EVT_BUTTON, self.submitOrderSale )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def submitOrderSale( self, event ):
+		event.Skip()
 
 
 ###########################################################################
@@ -369,7 +391,7 @@ class OwnerFrame ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 836,472 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTION ) )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		bSizer3 = wx.BoxSizer( wx.VERTICAL )
 
@@ -603,14 +625,9 @@ class OwnerFrame ( wx.Frame ):
 		self.logout.Bind( wx.EVT_BUTTON, self.logoutBtn )
 		self.ubahAkun.Bind( wx.EVT_BUTTON, self.UpdateAccount )
 		self.AdEmpBtn.Bind( wx.EVT_BUTTON, self.AdEmpBtnOnButtonClick )
-		self.Karyawan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
-                     self.tabelEmployeeOnGridCmdSelectCell)
 
-	def __del__(self):
+	def __del__( self ):
 		pass
-
-	def tabelEmployeeOnGridCmdSelectCell(self, event):
-		event.Skip()
 
 
 	# Virtual event handlers, overide them in your derived class
@@ -634,54 +651,58 @@ class EmployeeFrame ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 889,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		bSizer5 = wx.BoxSizer( wx.VERTICAL )
+
+		fgSizer24 = wx.FlexGridSizer( 0, 2, 0, 0 )
+		fgSizer24.SetFlexibleDirection( wx.BOTH )
+		fgSizer24.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+
+		fgSizer24.Add( ( 677, 0), 1, wx.EXPAND, 5 )
+
+		self.logoutBtn = wx.Button( self, wx.ID_ANY, u"Logout", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer24.Add( self.logoutBtn, 0, wx.ALL, 5 )
+
+
+		bSizer5.Add( fgSizer24, 1, wx.EXPAND, 5 )
 
 		self.m_notebook2 = wx.Notebook( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.barang = wx.Panel( self.m_notebook2, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer6 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_grid8 = wx.grid.Grid( self.barang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Item = wx.grid.Grid( self.barang, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid8.CreateGrid( 7, 5 )
-		self.m_grid8.EnableEditing( True )
-		self.m_grid8.EnableGridLines( True )
-		self.m_grid8.EnableDragGridSize( False )
-		self.m_grid8.SetMargins( 0, 0 )
+		self.Item.CreateGrid( 7, 5 )
+		self.Item.EnableEditing( True )
+		self.Item.EnableGridLines( True )
+		self.Item.EnableDragGridSize( False )
+		self.Item.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid8.EnableDragColMove( False )
-		self.m_grid8.EnableDragColSize( True )
-		self.m_grid8.SetColLabelSize( 30 )
-		self.m_grid8.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Item.EnableDragColMove( False )
+		self.Item.EnableDragColSize( True )
+		self.Item.SetColLabelSize( 30 )
+		self.Item.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid8.EnableDragRowSize( True )
-		self.m_grid8.SetRowLabelSize( 80 )
-		self.m_grid8.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Item.EnableDragRowSize( True )
+		self.Item.SetRowLabelSize( 80 )
+		self.Item.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid8.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		bSizer6.Add( self.m_grid8, 0, wx.ALL, 5 )
-
-		fgSizer10 = wx.FlexGridSizer( 0, 3, 0, 0 )
-		fgSizer10.SetFlexibleDirection( wx.BOTH )
-		fgSizer10.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-		self.m_button6 = wx.Button( self.barang, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer10.Add( self.m_button6, 0, wx.ALL, 5 )
-
-		self.m_button7 = wx.Button( self.barang, wx.ID_ANY, u"Ubah", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer10.Add( self.m_button7, 0, wx.ALL, 5 )
-
-		self.m_button8 = wx.Button( self.barang, wx.ID_ANY, u"Hapus", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer10.Add( self.m_button8, 0, wx.ALL, 5 )
+		self.Item.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		bSizer6.Add( self.Item, 0, wx.ALL, 5 )
 
 
-		bSizer6.Add( fgSizer10, 1, wx.EXPAND, 5 )
+		bSizer6.Add( ( 0, 100), 1, wx.EXPAND, 5 )
+
+		self.addItem = wx.Button( self.barang, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer6.Add( self.addItem, 0, wx.ALL, 5 )
 
 
 		self.barang.SetSizer( bSizer6 )
@@ -691,44 +712,38 @@ class EmployeeFrame ( wx.Frame ):
 		self.pesanan = wx.Panel( self.m_notebook2, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer71 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_grid71 = wx.grid.Grid( self.pesanan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Order = wx.grid.Grid( self.pesanan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid71.CreateGrid( 1, 7 )
-		self.m_grid71.EnableEditing( True )
-		self.m_grid71.EnableGridLines( True )
-		self.m_grid71.EnableDragGridSize( False )
-		self.m_grid71.SetMargins( 0, 0 )
+		self.Order.CreateGrid( 1, 7 )
+		self.Order.EnableEditing( True )
+		self.Order.EnableGridLines( True )
+		self.Order.EnableDragGridSize( False )
+		self.Order.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid71.EnableDragColMove( False )
-		self.m_grid71.EnableDragColSize( True )
-		self.m_grid71.SetColLabelSize( 30 )
-		self.m_grid71.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Order.EnableDragColMove( False )
+		self.Order.EnableDragColSize( True )
+		self.Order.SetColLabelSize( 30 )
+		self.Order.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid71.EnableDragRowSize( True )
-		self.m_grid71.SetRowLabelSize( 80 )
-		self.m_grid71.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Order.EnableDragRowSize( True )
+		self.Order.SetRowLabelSize( 80 )
+		self.Order.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid71.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		bSizer71.Add( self.m_grid71, 0, wx.ALL, 5 )
+		self.Order.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		bSizer71.Add( self.Order, 0, wx.ALL, 5 )
 
 		fgSizer81 = wx.FlexGridSizer( 0, 3, 0, 0 )
 		fgSizer81.SetFlexibleDirection( wx.BOTH )
 		fgSizer81.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_button91 = wx.Button( self.pesanan, wx.ID_ANY, u"Add", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer81.Add( self.m_button91, 0, wx.ALL, 5 )
-
-		self.m_button101 = wx.Button( self.pesanan, wx.ID_ANY, u"Update", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer81.Add( self.m_button101, 0, wx.ALL, 5 )
-
-		self.m_button111 = wx.Button( self.pesanan, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer81.Add( self.m_button111, 0, wx.ALL, 5 )
+		self.addOrder = wx.Button( self.pesanan, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer81.Add( self.addOrder, 0, wx.ALL, 5 )
 
 
 		bSizer71.Add( fgSizer81, 1, wx.EXPAND, 5 )
@@ -741,44 +756,35 @@ class EmployeeFrame ( wx.Frame ):
 		self.penjualan = wx.Panel( self.m_notebook2, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer7 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_grid7 = wx.grid.Grid( self.penjualan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.Sale = wx.grid.Grid( self.penjualan, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.m_grid7.CreateGrid( 1, 7 )
-		self.m_grid7.EnableEditing( True )
-		self.m_grid7.EnableGridLines( True )
-		self.m_grid7.EnableDragGridSize( False )
-		self.m_grid7.SetMargins( 0, 0 )
+		self.Sale.CreateGrid( 1, 7 )
+		self.Sale.EnableEditing( True )
+		self.Sale.EnableGridLines( True )
+		self.Sale.EnableDragGridSize( False )
+		self.Sale.SetMargins( 0, 0 )
 
 		# Columns
-		self.m_grid7.EnableDragColMove( False )
-		self.m_grid7.EnableDragColSize( True )
-		self.m_grid7.SetColLabelSize( 30 )
-		self.m_grid7.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Sale.EnableDragColMove( False )
+		self.Sale.EnableDragColSize( True )
+		self.Sale.SetColLabelSize( 30 )
+		self.Sale.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
-		self.m_grid7.EnableDragRowSize( True )
-		self.m_grid7.SetRowLabelSize( 80 )
-		self.m_grid7.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+		self.Sale.EnableDragRowSize( True )
+		self.Sale.SetRowLabelSize( 80 )
+		self.Sale.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Label Appearance
 
 		# Cell Defaults
-		self.m_grid7.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		bSizer7.Add( self.m_grid7, 0, wx.ALL, 5 )
+		self.Sale.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		bSizer7.Add( self.Sale, 0, wx.ALL, 5 )
 
 		fgSizer8 = wx.FlexGridSizer( 0, 3, 0, 0 )
 		fgSizer8.SetFlexibleDirection( wx.BOTH )
 		fgSizer8.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-		self.m_button9 = wx.Button( self.penjualan, wx.ID_ANY, u"Add", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer8.Add( self.m_button9, 0, wx.ALL, 5 )
-
-		self.m_button10 = wx.Button( self.penjualan, wx.ID_ANY, u"Update", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer8.Add( self.m_button10, 0, wx.ALL, 5 )
-
-		self.m_button11 = wx.Button( self.penjualan, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer8.Add( self.m_button11, 0, wx.ALL, 5 )
 
 
 		bSizer7.Add( fgSizer8, 1, wx.EXPAND, 5 )
@@ -792,13 +798,50 @@ class EmployeeFrame ( wx.Frame ):
 		bSizer5.Add( self.m_notebook2, 1, wx.EXPAND |wx.ALL, 5 )
 
 
+		bSizer5.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+
+		bSizer5.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+
 		self.SetSizer( bSizer5 )
 		self.Layout()
 
 		self.Centre( wx.BOTH )
 
-	def __del__( self ):
+		# Connect Events
+		self.logoutBtn.Bind( wx.EVT_BUTTON, self.logoutBtnClik )
+		self.addItem.Bind( wx.EVT_BUTTON, self.addItemBtn )
+		self.addOrder.Bind( wx.EVT_BUTTON, self.addOrderBtn )
+		self.barang.Bind(wx.grid.EVT_GRID_SELECT_CELL,
+                   self.tabelItemOnGridCmdSelectCell)
+		self.pesanan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
+                   self.tabelOrder)
+		self.penjualan.Bind(wx.grid.EVT_GRID_SELECT_CELL,
+                    self.tabelSale)
+
+	def _del_(self):
 		pass
+
+	def tabelItemOnGridCmdSelectCell(self, event):
+		event.Skip()
+
+	def tabelOrder(self, event):
+		event.Skip()
+
+	def tabelSale(self, event):
+		event.Skip()
+
+
+	# Virtual event handlers, overide them in your derived class
+	def logoutBtnClik( self, event ):
+		event.Skip()
+
+	def addItemBtn( self, event ):
+		event.Skip()
+
+	def addOrderBtn( self, event ):
+		event.Skip()
 
 
 ###########################################################################
@@ -811,6 +854,7 @@ class UpdateOwner ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 420,282 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		fgSizer69 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer69.SetFlexibleDirection( wx.BOTH )

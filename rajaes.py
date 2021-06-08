@@ -26,7 +26,6 @@ class Owner(RajaEs):
         result = self.executeQuery(self.query, True)
         return result
 
-
 class Employee(RajaEs):
 
     def updateDataEmployee(self, id, username, password, nama, gender, alamat, telepon, tanggalMasuk):
@@ -62,6 +61,26 @@ class Item(RajaEs):
         result = self.executeQuery(self.query, True)
         return result
 
+    def addDataItem(self, nama, hargaJual, hargaBeli, stok):
+        self.query = 'INSERT INTO item (nama, hargaJual, hargaBeli, stok) VALUES (\'%s\', \'%s\', \'%s\', \'%s\')'
+        self.query = self.query % (
+            nama, hargaJual, hargaBeli, stok)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def deleteItem(self, id):
+        self.query = 'DELETE FROM item where id = %i'
+        self.query = self.query % (id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def updateDataItem(self, id, nama, hargaJual, hargaBeli, stok):
+        self.query = "UPDATE item SET nama = \'%s\', hargaJual = \'%s\', hargaBeli = \'%s\', stok = \'%s\' WHERE id = %i"
+        self.query = self.query % (
+            nama, hargaJual, hargaBeli, stok, id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
 class Order(RajaEs):
 
     def getDataOrder(self):
@@ -70,6 +89,26 @@ class Order(RajaEs):
         result = self.executeQuery(self.query, True)
         return result
 
+    def addDataOrder(self, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.query = 'INSERT INTO ordered (namaPemesan, alamat, barang, jumlah, tanggalPesan, status) VALUES (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')'
+        self.query = self.query % (
+            namaPemesan, alamat, barang, jumlah, tanggalPesan, status)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def deleteOrder(self, id):
+        self.query = 'DELETE FROM ordered where id = %i'
+        self.query = self.query % (id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def updateDataOrder(self, id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.query = "UPDATE ordered SET namaPemesan = \'%s\', alamat = \'%s\', barang = \'%s\', jumlah = \'%s\', tanggalPesan = \'%s\', status = \'%s\' WHERE id = %i"
+        self.query = self.query % (
+            namaPemesan, alamat, barang, jumlah, tanggalPesan, status, id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
 class Sale(RajaEs):
 
     def getDataSale(self):
@@ -77,3 +116,16 @@ class Sale(RajaEs):
         print('self.query : ', self.query)
         result = self.executeQuery(self.query, True)
         return result
+
+    def deleteSale(self, id):
+        self.query = 'DELETE FROM ordered where id = %i'
+        self.query = self.query % (id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)
+
+    def updateDataSale(self, id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.query = "UPDATE ordered SET namaPemesan = \'%s\', alamat = \'%s\', barang = \'%s\', jumlah = \'%s\', tanggalPesan = \'%s\', status = \'%s\' WHERE id = %i"
+        self.query = self.query % (
+            namaPemesan, alamat, barang, jumlah, tanggalPesan, status, id)
+        print('self.query : ', self.query)
+        self.executeQuery(self.query)

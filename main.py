@@ -3,15 +3,17 @@ import ui
 import wx
 import rajaes
 
+
 class dlgAdd(ui.InsertKaryawan):
     def __init__(self, parent, id=-1):
         ui.InsertKaryawan.__init__(self, parent)
-        self.parent=parent
+        self.parent = parent
         self.id = id
 
-    def submitOnButtonClick( self, event ):
-        dlg= wx.MessageDialog(self, 'simpan data', 'Informasi', style=wx.YES_NO)
-        retval= dlg.ShowModal()
+    def submitOnButtonClick(self, event):
+        dlg = wx.MessageDialog(self, 'simpan data',
+                               'Informasi', style=wx.YES_NO)
+        retval = dlg.ShowModal()
 
         if self.id == -1:
             self.parent.insertDataEmployee(self.ctrlUsername.GetValue(), self.ctrlPassword.GetValue(
@@ -40,7 +42,8 @@ class dlgOwner(ui.UpdateOwner):
         dlg = wx.MessageDialog(self, 'simpan data',
                                'Informasi', style=wx.YES_NO)
 
-        self.parent.updateDataO(self.usrCtrl.GetValue(), self.pswCtrl.GetValue(), self.nameCtrl.GetValue())
+        self.parent.updateDataO(self.usrCtrl.GetValue(
+        ), self.pswCtrl.GetValue(), self.nameCtrl.GetValue())
 
         self.Destroy()
 
@@ -49,11 +52,88 @@ class dlgOwner(ui.UpdateOwner):
         self.pswCtrl.SetValue(password)
         self.nameCtrl.SetValue(nama)
 
+class dlgAddItem(ui.InsertBarang):
+    def __init__(self, parent, id=-1):
+        ui.InsertBarang.__init__(self, parent)
+        self.parent = parent
+        self.id = id
+
+    def submitItem(self, event):
+        dlgI = wx.MessageDialog(self, 'simpan data',
+                               'Informasi', style=wx.YES_NO)
+        retval = dlgI.ShowModal()
+
+        if self.id == -1:
+            self.parent.insertDataItem(self.m_textCtrl3.GetValue(), self.m_textCtrl5.GetValue(
+            ), self.m_textCtrl6.GetValue(), self.m_textCtrl24.GetValue())
+        else:
+            self.parent.updateDataBarang(self.id, self.m_textCtrl3.GetValue(), self.m_textCtrl5.GetValue(
+            ), self.m_textCtrl6.GetValue(), self.m_textCtrl24.GetValue())
+
+        self.Destroy()
+
+    def fillDataItem(self, nama, hargaJual, hargaBeli, stok):
+        self.m_textCtrl3.SetValue(nama)
+        self.m_textCtrl5.SetValue(hargaJual)
+        self.m_textCtrl6.SetValue(hargaBeli)
+        self.m_textCtrl24.SetValue(stok)
+
+class dlgAddOrder(ui.PenjualanPesanan):
+    def __init__(self, parent, id=-1):
+        ui.PenjualanPesanan.__init__(self, parent)
+        self.parent = parent
+        self.id = id
+
+    def submitOrderSale(self, event):
+        dlgP = wx.MessageDialog(self, 'simpan data',
+                               'Informasi', style=wx.YES_NO)
+        retval = dlgP.ShowModal()
+
+        if self.id == -1:
+            self.parent.insertDataOrder(self.namaCtrl.GetValue(), self.alamatCtrl.GetValue(
+            ), self.barangCtrl.GetValue(), self.totalCtrl.GetValue(), self.dateCtrl.GetValue(), self.statusCtrl.GetValue())
+        else:
+            self.parent.updateDataPesanan(self.id, self.namaCtrl.GetValue(), self.alamatCtrl.GetValue(
+            ), self.barangCtrl.GetValue(), self.totalCtrl.GetValue(), self.dateCtrl.GetValue(), self.statusCtrl.GetValue())
+
+        self.Destroy()
+
+    def fillDataOrder(self, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.namaCtrl.SetValue(namaPemesan)
+        self.alamatCtrl.SetValue(alamat)
+        self.barangCtrl.SetValue(barang)
+        self.totalCtrl.SetValue(jumlah)
+        self.dateCtrl.SetValue(tanggalPesan)
+        self.statusCtrl.SetValue(status)
+
+class dlgAddSale(ui.PenjualanPesanan):
+    def __init__(self, parent, id):
+        ui.PenjualanPesanan.__init__(self, parent)
+        self.parent = parent
+        self.id = id
+
+    def submitOrderSale(self, event):
+        dlgS = wx.MessageDialog(self, 'simpan data',
+                                'Informasi', style=wx.YES_NO)
+        retval = dlgS.ShowModal()
+
+        self.parent.updateDataPenjualan(self.id, self.namaCtrl.GetValue(), self.alamatCtrl.GetValue(), self.barangCtrl.GetValue(), self.totalCtrl.GetValue(), self.dateCtrl.GetValue(), self.statusCtrl.GetValue())
+
+        self.Destroy()
+
+    def fillDataSale(self, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.namaCtrl.SetValue(namaPemesan)
+        self.alamatCtrl.SetValue(alamat)
+        self.barangCtrl.SetValue(barang)
+        self.totalCtrl.SetValue(jumlah)
+        self.dateCtrl.SetValue(tanggalPesan)
+        self.statusCtrl.SetValue(status)
+
 class LoginFrame(ui.Login):
     def __init__(self, parent):
         ui.Login.__init__(self, parent)
 
-    def loginBtnOnButtonClick( self, event ):
+    def loginBtnOnButtonClick(self, event):
         self.owner = rajaes.Owner()
         listOwner = self.owner.getDataOwner()
 
@@ -67,7 +147,7 @@ class LoginFrame(ui.Login):
         tempPassword = []
         tempNama = []
         tempRole = []
-        login=False
+        login = False
 
         for x in listOwner:
             tempUsername.append(x[1])
@@ -85,16 +165,17 @@ class LoginFrame(ui.Login):
             if username == tempUsername[i] and password == tempPassword[i]:
                 if tempRole[i] == "Owner":
                     OwnerFrame.Show()
-                    login=True
+                    login = True
                     self.Hide()
                 elif tempRole[i] != "Owner":
                     EmployeeFrame.Show()
                     self.Hide()
-                    login=True
+                    login = True
 
-        if login!=True:
-            alert=wx.MessageDialog(None, "username dan password salah","pemeberitahuan", wx.YES_DEFAULT)
-            asw=alert.ShowModal()
+        if login != True:
+            alert = wx.MessageDialog(
+                None, "username dan password salah", "pemeberitahuan", wx.YES_DEFAULT)
+            asw = alert.ShowModal()
 
 
 class OwnerFrame(ui.OwnerFrame):
@@ -109,7 +190,7 @@ class OwnerFrame(ui.OwnerFrame):
         # self.AddBtnSale()
         # self.AddBtnBarang()
         # self.AddBtnPesanan()
-        
+
     def logoutBtn(self, event):
         OwnerFrame.Hide()
         LoginFrame.Show()
@@ -133,7 +214,7 @@ class OwnerFrame(ui.OwnerFrame):
         self.lstIdOwner = []
         for col in range(len(colums)):
             self.Akun.SetColLabelValue(
-                col, colums[col]) 
+                col, colums[col])
         for owner_row in listOwner:
             self.Akun.AppendRows(1)
 
@@ -152,7 +233,7 @@ class OwnerFrame(ui.OwnerFrame):
     def updateDataO(self, username, password, nama):
         self.owner.updateDataOwner(username, password, nama)
         self.showAccount()
-    
+
     def showItem(self):
 
         n_cols = self.Barang.GetNumberCols()
@@ -189,7 +270,7 @@ class OwnerFrame(ui.OwnerFrame):
             self.Barang.SetCellValue(row, 4, stoks)
             self.lstIdItem.append(id)
             row += 1
-        
+
         self.Barang.Fit()
         self.dataBarang.Layout()
 
@@ -201,7 +282,8 @@ class OwnerFrame(ui.OwnerFrame):
         if n_rows > 0:
             self.Pesanan.DeleteRows(0, n_rows, True)
 
-        colums = ['ID', 'Nama Pemesana', 'Alamat', 'Order', "Jumlah", "Tanggal Pesanan", "Status"]
+        colums = ['ID', 'Nama Pemesana', 'Alamat',
+                  'Order', "Jumlah", "Tanggal Pesanan", "Status"]
         self.Pesanan.AppendCols(len(colums))
 
         self.order = rajaes.Order()
@@ -231,7 +313,6 @@ class OwnerFrame(ui.OwnerFrame):
 
         self.Pesanan.Fit()
         self.dataPesanan.Layout()
-
 
     def showSale(self):
         n_cols = self.Penjualan.GetNumberCols()
@@ -309,8 +390,8 @@ class OwnerFrame(ui.OwnerFrame):
             self.Karyawan.SetCellValue(row, 7, tanggalMasuk)
             self.lstIdEmployee.append(id)
             row += 1
-    
-    def AdEmpBtnOnButtonClick( self, event ):
+
+    def AdEmpBtnOnButtonClick(self, event):
         dlg = dlgAdd(self)
         dlg.ShowModal()
 
@@ -321,7 +402,8 @@ class OwnerFrame(ui.OwnerFrame):
         self.AddBtnKaryawan()
 
     def updateDataEmp(self, id, username, password, nama, gender, alamat, telepon, tanggalMasuk):
-        self.employee.updateDataEmployee(id, username, password, nama, gender, alamat, telepon, tanggalMasuk)
+        self.employee.updateDataEmployee(
+            id, username, password, nama, gender, alamat, telepon, tanggalMasuk)
         self.showEmployee()
         self.AddBtnKaryawan()
 
@@ -332,7 +414,6 @@ class OwnerFrame(ui.OwnerFrame):
         print('baris: ', baris)
         print('kolom: ', kolom)
         if kolom == 8:
-            # wx.MessageBox('Edit data', 'Informasi')
             id = self.lstIdEmployee[baris]
             dlg = dlgAdd(self, id)
             userName = self.Karyawan.GetCellValue(baris, 1)
@@ -342,7 +423,8 @@ class OwnerFrame(ui.OwnerFrame):
             address = self.Karyawan.GetCellValue(baris, 5)
             phone = self.Karyawan.GetCellValue(baris, 6)
             dat = self.Karyawan.GetCellValue(baris, 7)
-            dlg.fillDataEmployee(userName, psw, name, gnder, address, phone, dat)
+            dlg.fillDataEmployee(userName, psw, name,
+                                 gnder, address, phone, dat)
             dlg.ShowModal()
         elif kolom == 9:
             dlg = wx.MessageDialog(
@@ -353,26 +435,6 @@ class OwnerFrame(ui.OwnerFrame):
                 self.employee.deleteEmployee(self.lstIdEmployee[baris])
                 self.showEmployee()
                 self.AddBtnKaryawan()
-
-    # def AddBtnSale(self):
-    #     jmlKolom = self.Penjualan.GetNumberCols()
-    #     self.Penjualan.AppendCols(2)
-    #     colEdit = jmlKolom
-    #     colDelete = jmlKolom + 1
-
-    #     self.Penjualan.SetColLabelValue(colEdit, '')
-    #     self.Penjualan.SetColLabelValue(colDelete, '')
-
-    #     for row in range(self.Penjualan.GetNumberRows()):
-    #         self.Penjualan.SetCellValue(row, colEdit, 'Edit')
-    #         self.Penjualan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
-    #         self.Penjualan.SetCellTextColour(row, colEdit, wx.WHITE)
-
-    #         self.Penjualan.SetCellValue(row, colDelete, 'Delete')
-    #         self.Penjualan.SetCellBackgroundColour(row, colDelete, wx.RED)
-    #         self.Penjualan.SetCellTextColour(row, colDelete, wx.WHITE)
-
-        
 
     def AddBtnKaryawan(self):
         jmlKolom = self.Karyawan.GetNumberCols()
@@ -395,51 +457,312 @@ class OwnerFrame(ui.OwnerFrame):
         self.Karyawan.Fit()
         self.infoAkun.Layout()
 
-    # def AddBtnBarang(self):
-    #     jmlKolom = self.Barang.GetNumberCols()
-    #     self.Barang.AppendCols(2)
-    #     colEdit = jmlKolom
-    #     colDelete = jmlKolom + 1
-
-    #     self.Barang.SetColLabelValue(colEdit, '')
-    #     self.Barang.SetColLabelValue(colDelete, '')
-
-    #     for row in range(self.Barang.GetNumberRows()):
-    #         self.Barang.SetCellValue(row, colEdit, 'Edit')
-    #         self.Barang.SetCellBackgroundColour(row, colEdit, wx.BLUE)
-    #         self.Barang.SetCellTextColour(row, colEdit, wx.WHITE)
-
-    #         self.Barang.SetCellValue(row, colDelete, 'Delete')
-    #         self.Barang.SetCellBackgroundColour(row, colDelete, wx.RED)
-    #         self.Barang.SetCellTextColour(row, colDelete, wx.WHITE)
-
-        
-    
-    # def AddBtnPesanan(self):
-    #     jmlKolom = self.Pesanan.GetNumberCols()
-    #     self.Pesanan.AppendCols(2)
-    #     colEdit = jmlKolom
-    #     colDelete = jmlKolom + 1
-
-    #     self.Pesanan.SetColLabelValue(colEdit, '')
-    #     self.Pesanan.SetColLabelValue(colDelete, '')
-
-    #     for row in range(self.Pesanan.GetNumberRows()):
-    #         self.Pesanan.SetCellValue(row, colEdit, 'Edit')
-    #         self.Pesanan.SetCellBackgroundColour(row, colEdit, wx.BLUE)
-    #         self.Pesanan.SetCellTextColour(row, colEdit, wx.WHITE)
-
-    #         self.Pesanan.SetCellValue(row, colDelete, 'Delete')
-    #         self.Pesanan.SetCellBackgroundColour(row, colDelete, wx.RED)
-    #         self.Pesanan.SetCellTextColour(row, colDelete, wx.WHITE)
-
-        
-        
-        
-
 class EmployeeFrame(ui.EmployeeFrame):
     def __init__(self, parent):
         ui.EmployeeFrame.__init__(self, parent)
+        self.showBarang()
+        self.showOrder()
+        self.showSale()
+        self.AddBtnBarang()
+        self.AddBtnPesanan()
+        self.AddBtnSale()
+
+    def logoutBtnClik(self, event):
+        EmployeeFrame.Hide()
+        LoginFrame.Show()
+
+    def showBarang(self):
+
+        n_cols = self.Item.GetNumberCols()
+        n_rows = self.Item.GetNumberRows()
+        if n_cols > 0:
+            self.Item.DeleteCols(0, n_cols, True)
+        if n_rows > 0:
+            self.Item.DeleteRows(0, n_rows, True)
+
+        colums = ['ID', 'Nama', 'Harga Jual', 'Harga Beli', "Stok"]
+        self.Item.AppendCols(len(colums))
+
+        self.item = rajaes.Item()
+        listItem = self.item.getDataItem()
+        row = 0
+
+        self.lstIdItem = []
+        for col in range(len(colums)):
+            self.Item.SetColLabelValue(
+                col, colums[col])
+        for item_row in listItem:
+            self.Item.AppendRows(1)
+
+            print(row, '. ', item_row)
+            id, nama, hargaJual, hargaBeli, stok = item_row
+            ids = str(id)
+            hargaJuals = str(hargaJual)
+            hargaBelis = str(hargaBeli)
+            stoks = str(stok)
+            self.Item.SetCellValue(row, 0, ids)
+            self.Item.SetCellValue(row, 1, nama)
+            self.Item.SetCellValue(row, 2, hargaJuals)
+            self.Item.SetCellValue(row, 3, hargaBelis)
+            self.Item.SetCellValue(row, 4, stoks)
+            self.lstIdItem.append(id)
+            row += 1
+
+        self.Item.Fit()
+        self.barang.Layout()
+
+    def addItemBtn(self, event):
+        dlgI = dlgAddItem(self)
+        dlgI.ShowModal()
+
+    def insertDataItem(self, nama, hargaJual, hargaBeli, stok):
+        self.item.addDataItem(
+            nama, hargaJual, hargaBeli, stok)
+        self.showBarang()
+        self.AddBtnBarang()
+
+    def updateDataBarang(self, id, nama, hargaJual, hargaBeli, stok):
+        self.item.updateDataItem(
+            id, nama, hargaJual, hargaBeli, stok)
+        self.showBarang()
+        self.AddBtnBarang()
+
+    def tabelItemOnGridCmdSelectCell(self, event):
+        baris = event.GetRow()
+        kolom = event.GetCol()
+
+        print('baris: ', baris)
+        print('kolom: ', kolom)
+        if kolom == 5:
+            id = self.lstIdItem[baris]
+            dlgI = dlgAddItem(self, id)
+            name = self.Item.GetCellValue(baris, 1)
+            jual = self.Item.GetCellValue(baris, 2)
+            beli = self.Item.GetCellValue(baris, 3)
+            stok = self.Item.GetCellValue(baris, 4)
+            dlgI.fillDataItem( name, jual, beli, stok)
+            dlgI.ShowModal()
+        elif kolom == 6:
+            dlgI = wx.MessageDialog(
+                self, 'Hapus data', 'Informasi', style=wx.YES_NO)
+            retval = dlgI.ShowModal()
+            if retval == wx.ID_YES:
+                print('hapus')
+                self.item.deleteItem(self.lstIdItem[baris])
+                self.showBarang()
+                self.AddBtnBarang()
+
+    def AddBtnBarang(self):
+        jmlKolom = self.Item.GetNumberCols()
+        self.Item.AppendCols(2)
+        colEdit = jmlKolom
+        colDelete = jmlKolom + 1
+
+        self.Item.SetColLabelValue(colEdit, '')
+        self.Item.SetColLabelValue(colDelete, '')
+
+        for row in range(self.Item.GetNumberRows()):
+            self.Item.SetCellValue(row, colEdit, 'Edit')
+            self.Item.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+            self.Item.SetCellTextColour(row, colEdit, wx.WHITE)
+
+            self.Item.SetCellValue(row, colDelete, 'Delete')
+            self.Item.SetCellBackgroundColour(row, colDelete, wx.RED)
+            self.Item.SetCellTextColour(row, colDelete, wx.WHITE)
+
+    def showOrder(self):
+        n_cols = self.Order.GetNumberCols()
+        n_rows = self.Order.GetNumberRows()
+        if n_cols > 0:
+            self.Order.DeleteCols(0, n_cols, True)
+        if n_rows > 0:
+            self.Order.DeleteRows(0, n_rows, True)
+
+        colums = ['ID', 'Nama Pemesana', 'Alamat',
+                  'Order', "Jumlah", "Tanggal Pesanan", "Status"]
+        self.Order.AppendCols(len(colums))
+
+        self.order = rajaes.Order()
+        listOrder = self.order.getDataOrder()
+        row = 0
+
+        self.lstIdOrder = []
+        for col in range(len(colums)):
+            self.Order.SetColLabelValue(
+                col, colums[col])
+        for order_row in listOrder:
+            self.Order.AppendRows(1)
+
+            print(row, '. ', order_row)
+            id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status = order_row
+            ids = str(id)
+            total = str(jumlah)
+            self.Order.SetCellValue(row, 0, ids)
+            self.Order.SetCellValue(row, 1, namaPemesan)
+            self.Order.SetCellValue(row, 2, alamat)
+            self.Order.SetCellValue(row, 3, barang)
+            self.Order.SetCellValue(row, 4, total)
+            self.Order.SetCellValue(row, 5, tanggalPesan)
+            self.Order.SetCellValue(row, 6, status)
+            self.lstIdOrder.append(id)
+            row += 1
+
+        self.Order.Fit()
+        self.pesanan.Layout()
+
+    def addOrderBtn(self, event):
+        dlgP = dlgAddOrder(self)
+        dlgP.ShowModal()
+
+    def insertDataOrder(self, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.order.addDataOrder(
+            namaPemesan, alamat, barang, jumlah, tanggalPesan, status)
+        self.showOrder()
+        self.AddBtnPesanan()
+
+    def updateDataPesanan(self, id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.order.updateDataOrder(
+            id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status)
+        self.showOrder()
+        self.AddBtnPesanan()
+
+    def tabelOrder(self, event):
+        baris = event.GetRow()
+        kolom = event.GetCol()
+
+        print('baris: ', baris)
+        print('kolom: ', kolom)
+        if kolom == 7:
+            id = self.lstIdOrder[baris]
+            dlgP = dlgAddOrder(self, id)
+            pemesan = self.Order.GetCellValue(baris, 1)
+            addre = self.Order.GetCellValue(baris, 2)
+            itm = self.Order.GetCellValue(baris, 3)
+            tlt = self.Order.GetCellValue(baris, 4)
+            tglp = self.Order.GetCellValue(baris, 5)
+            sts = self.Order.GetCellValue(baris, 6)
+            dlgP.fillDataOrder(pemesan, addre, itm,
+                              tlt, tglp, sts)
+            dlgP.ShowModal()
+        elif kolom == 8:
+            dlgP = wx.MessageDialog(
+                self, 'Hapus data', 'Informasi', style=wx.YES_NO)
+            retval = dlgP.ShowModal()
+            if retval == wx.ID_YES:
+                print('hapus')
+                self.order.deleteOrder(self.lstIdOrder[baris])
+                self.showOrder()
+                self.AddBtnPesanan()
+
+    def AddBtnPesanan(self):
+        jmlKolom = self.Order.GetNumberCols()
+        self.Order.AppendCols(2)
+        colEdit = jmlKolom
+        colDelete = jmlKolom + 1
+
+        self.Order.SetColLabelValue(colEdit, '')
+        self.Order.SetColLabelValue(colDelete, '')
+
+        for row in range(self.Order.GetNumberRows()):
+            self.Order.SetCellValue(row, colEdit, 'Edit')
+            self.Order.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+            self.Order.SetCellTextColour(row, colEdit, wx.WHITE)
+
+            self.Order.SetCellValue(row, colDelete, 'Delete')
+            self.Order.SetCellBackgroundColour(row, colDelete, wx.RED)
+            self.Order.SetCellTextColour(row, colDelete, wx.WHITE)
+
+    def showSale(self):
+        n_cols = self.Sale.GetNumberCols()
+        n_rows = self.Sale.GetNumberRows()
+        if n_cols > 0:
+            self.Sale.DeleteCols(0, n_cols, True)
+        if n_rows > 0:
+            self.Sale.DeleteRows(0, n_rows, True)
+
+        colums = ['ID', 'Nama Pemesana', 'Alamat',
+                  'Order', "Jumlah", "Tanggal Pesanan", "Status"]
+        self.Sale.AppendCols(len(colums))
+
+        self.sale = rajaes.Sale()
+        listSale = self.sale.getDataSale()
+        row = 0
+
+        self.lstIdSale = []
+        for col in range(len(colums)):
+            self.Sale.SetColLabelValue(
+                col, colums[col])
+        for sale_row in listSale:
+            self.Sale.AppendRows(1)
+
+            print(row, '. ', sale_row)
+            id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status = sale_row
+            ids = str(id)
+            total = str(jumlah)
+            self.Sale.SetCellValue(row, 0, ids)
+            self.Sale.SetCellValue(row, 1, namaPemesan)
+            self.Sale.SetCellValue(row, 2, alamat)
+            self.Sale.SetCellValue(row, 3, barang)
+            self.Sale.SetCellValue(row, 4, total)
+            self.Sale.SetCellValue(row, 5, tanggalPesan)
+            self.Sale.SetCellValue(row, 6, status)
+            self.lstIdSale.append(id)
+            row += 1
+        self.Sale.Fit()
+        self.penjualan.Layout()
+
+    def updateDataPenjualan(self, id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
+        self.sale.updateDataSale(
+            id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status)
+        self.showSale()
+        self.AddBtnSale()
+
+    def tabelSale(self, event):
+        baris = event.GetRow()
+        kolom = event.GetCol()
+
+        print('baris: ', baris)
+        print('kolom: ', kolom)
+        if kolom == 7:
+            id = self.lstIdSale[baris]
+            dlgS = dlgAddSale(self, id)
+            pemesan = self.Sale.GetCellValue(baris, 1)
+            addre = self.Sale.GetCellValue(baris, 2)
+            itm = self.Sale.GetCellValue(baris, 3)
+            tlt = self.Sale.GetCellValue(baris, 4)
+            tglp = self.Sale.GetCellValue(baris, 5)
+            sts = self.Sale.GetCellValue(baris, 6)
+            dlgS.fillDataSale(pemesan, addre, itm,
+                               tlt, tglp, sts)
+            dlgS.ShowModal()
+        
+        elif kolom == 8:
+            dlgS = wx.MessageDialog(
+                self, 'Hapus data', 'Informasi', style=wx.YES_NO)
+            retval = dlgS.ShowModal()
+            if retval == wx.ID_YES:
+                print('hapus')
+                self.sale.deleteSale(self.lstIdSale[baris])
+                self.showSale()
+                self.AddBtnSale()
+
+    def AddBtnSale(self):
+        jmlKolom = self.Sale.GetNumberCols()
+        self.Sale.AppendCols(2)
+        colEdit = jmlKolom
+        colDelete = jmlKolom + 1
+
+        self.Sale.SetColLabelValue(colEdit, '')
+        self.Sale.SetColLabelValue(colDelete, '')
+
+        for row in range(self.Sale.GetNumberRows()):
+            self.Sale.SetCellValue(row, colEdit, 'Edit')
+            self.Sale.SetCellBackgroundColour(row, colEdit, wx.BLUE)
+            self.Sale.SetCellTextColour(row, colEdit, wx.WHITE)
+
+            self.Sale.SetCellValue(row, colDelete, 'Delete')
+            self.Sale.SetCellBackgroundColour(row, colDelete, wx.RED)
+            self.Sale.SetCellTextColour(row, colDelete, wx.WHITE)
 
 
 app = wx.App()
