@@ -505,9 +505,6 @@ class EmployeeFrame(ui.EmployeeFrame):
             self.lstIdItem.append(id)
             row += 1
 
-        self.Item.Fit()
-        self.barang.Layout()
-
     def addItemBtn(self, event):
         dlgI = dlgAddItem(self)
         dlgI.ShowModal()
@@ -566,6 +563,9 @@ class EmployeeFrame(ui.EmployeeFrame):
             self.Item.SetCellValue(row, colDelete, 'Delete')
             self.Item.SetCellBackgroundColour(row, colDelete, wx.RED)
             self.Item.SetCellTextColour(row, colDelete, wx.WHITE)
+        
+        self.Item.Fit()
+        self.barang.Layout()
 
     def showOrder(self):
         n_cols = self.Order.GetNumberCols()
@@ -604,8 +604,6 @@ class EmployeeFrame(ui.EmployeeFrame):
             self.lstIdOrder.append(id)
             row += 1
 
-        self.Order.Fit()
-        self.pesanan.Layout()
 
     def addOrderBtn(self, event):
         dlgP = dlgAddOrder(self)
@@ -668,6 +666,9 @@ class EmployeeFrame(ui.EmployeeFrame):
             self.Order.SetCellValue(row, colDelete, 'Delete')
             self.Order.SetCellBackgroundColour(row, colDelete, wx.RED)
             self.Order.SetCellTextColour(row, colDelete, wx.WHITE)
+        
+        self.Order.Fit()
+        self.pesanan.Layout()
 
     def showSale(self):
         n_cols = self.Sale.GetNumberCols()
@@ -705,8 +706,6 @@ class EmployeeFrame(ui.EmployeeFrame):
             self.Sale.SetCellValue(row, 6, status)
             self.lstIdSale.append(id)
             row += 1
-        self.Sale.Fit()
-        self.penjualan.Layout()
 
     def updateDataPenjualan(self, id, namaPemesan, alamat, barang, jumlah, tanggalPesan, status):
         self.sale.updateDataSale(
@@ -760,6 +759,9 @@ class EmployeeFrame(ui.EmployeeFrame):
             self.Sale.SetCellValue(row, colDelete, 'Delete')
             self.Sale.SetCellBackgroundColour(row, colDelete, wx.RED)
             self.Sale.SetCellTextColour(row, colDelete, wx.WHITE)
+            
+        self.Sale.Fit()
+        self.penjualan.Layout()
 
 
 app = wx.App()
